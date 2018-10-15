@@ -38,27 +38,27 @@ This project will be corrected by humans only. You’re allowed to organise and 
 
 • Within the mandatory part, you are allowed to use only the following libc functions:
 
-  ◦ open
+    ◦ open
   
-  ◦ read
+    ◦ read
   
-  ◦ write
+    ◦ write
 
-  ◦ close
+    ◦ close
 
-  ◦ malloc
+    ◦ malloc
   
-  ◦ free
+    ◦ free
   
-  ◦ perror
+    ◦ perror
   
-  ◦ strerror
+    ◦ strerror
 
-  ◦ exit
+    ◦ exit
   
-  ◦ All functions of the math library (-lm man man 3 math)
+    ◦ All functions of the math library (-lm man man 3 math)
   
-  ◦ All functions of the MinilibX or their equivalent in another graphic library.
+    ◦ All functions of the MinilibX or their equivalent in another graphic library.
   
 • You are allowed to use other functions or other librairies to complete the bonus part as long as their use is justified during your defense. Be smart!
 
@@ -106,7 +106,7 @@ Figure V.4: A bit of everything, including 2 planes
 
 Figure V.5: Same scene different viewpoit
 
-<img width="577" alt="screenshot 2018-10-15 at 09 39 26" src="https://user-images.githubusercontent.com/36789037/46936443-b2332680-d05e-11e8-934b-49050b68295d.png">
+<img width="576" alt="screenshot 2018-10-15 at 09 39 34" src="https://user-images.githubusercontent.com/36789037/46936605-27066080-d05f-11e8-9fbc-e70294540f66.png">
 
 Figure V.6: This time with shadows
 
