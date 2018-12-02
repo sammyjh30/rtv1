@@ -75,13 +75,19 @@ int		read_camera(int fd, t_cam *c)
 			return (0);
 		if (is_cam(line))
 		{
-			if (!(get_cam(fd, c)))
+			if (!(get_cam(fd, c))) {
+				ft_strdel(&line);
 				return (0);
+			}
 		}
-		else if (ft_strequ(line, "\0"))
+		else if (ft_strequ(line, "\0")) {
+			ft_strdel(&line);
 			continue ;
-		else if (ft_strequ(line, "#"))
+		}
+		else if (ft_strequ(line, "#")) {
+			ft_strdel(&line);
 			return (1);
+		}
 		else
 		{
 			ft_strdel(&line);

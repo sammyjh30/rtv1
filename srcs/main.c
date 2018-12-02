@@ -18,6 +18,9 @@ int		ft_exit(t_param *p)
 	return (0);
 }
 
+/*
+** Check for valid arguments
+*/
 void	arg_check(char *str, t_param *p)
 {
 	if (!(ft_rt(str)))
@@ -32,6 +35,9 @@ void	arg_check(char *str, t_param *p)
 	}
 }
 
+/*
+** Start MLX process
+*/
 void	start_mlx(t_param *p)
 {
 	if (OS)

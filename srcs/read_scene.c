@@ -12,6 +12,9 @@
 
 #include "rtv1.h"
 
+/*
+** Checks which class is being read
+*/
 int		read_class(int fd, t_param *p, char *line)
 {
 	if (ft_strequ(line, "##Objects"))
@@ -80,6 +83,9 @@ int		read_file(char *av, t_param *p)
 	return (r);
 }
 
+/*
+** Checks if arguement is valid filetype
+*/
 int		ft_rt(char *str)
 {
 	char *f_ext;

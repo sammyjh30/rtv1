@@ -45,10 +45,14 @@ int		read_lights(int fd, t_vector *set)
 			break ;
 		if (is_light(line))
 			check_lights(fd, set, line);
-		else if (ft_strequ(line, ""))
+		else if (ft_strequ(line, "")){
+			ft_strdel(&line);
 			continue ;
-		else if (ft_strequ(line, "#"))
+		}
+		else if (ft_strequ(line, "#")) {
+			ft_strdel(&line);
 			return (1);
+		}
 		else
 		{
 			ft_strdel(&line);

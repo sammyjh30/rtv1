@@ -3,92 +3,125 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xrhoda <xrhoda@student.42.fr>              +#+  +:+       +#+        */
+/*   By: shillebr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/12 13:11:58 by xrhoda            #+#    #+#             */
-/*   Updated: 2018/08/29 18:31:30 by xrhoda           ###   ########.fr       */
+/*   Created: 2018/06/01 11:22:38 by shillebr          #+#    #+#             */
+/*   Updated: 2018/06/12 12:21:23 by shillebr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fcntl.h>
-#include <unistd.h>
-#include "lib_ft.h"
-#include <stdio.h>
+#include "get_next_line.h"
 
-static	t_list	*new_file(t_list **file_list, int fd)
+t_line	*ft_getfd(int fd, t_line *head)
 {
-	t_list *tmp;
+	t_line	*tmp;
 
-	tmp = *file_list;
-	while (tmp)
-	{
-		if ((int)tmp->content_size == fd)
-			return (tmp);
+	tmp = head;
+	if (tmp->fd == fd)
+		return (tmp);
+	while ((tmp->fd != fd) && (tmp->next != NULL))
 		tmp = tmp->next;
-	}
-	tmp = ft_lstnew("\0", 1);
-	tmp->content_size = fd;
-	ft_lstadd(file_list, tmp);
-	tmp = *file_list;
+	if (tmp->fd == fd)
+		return (tmp);
+	tmp->next = (t_line *)ft_memalloc(sizeof(t_line) * 1);
+	if (!(tmp->next))
+		return (NULL);
+	(tmp->next)->str = NULL;
+	(tmp->next)->next = NULL;
+	(tmp->next)->ovr = NULL;
+	(tmp->next)->buf = NULL;
+	(tmp->next)->nl = 0;
+	(tmp->next)->n = 1;
+	(tmp->next)->fd = fd;
+	tmp = tmp->next;
 	return (tmp);
 }
 
-static	void	gnl_cat(char **line, t_list *file)
+int		get_str(t_line *ret)
 {
-	int		size_line;
 	char	*tmp;
+	int		i;
 
-	size_line = ft_strclen(file->content, '\n');
-	*line = ft_strsub(file->content, 0, size_line);
-	if (((char *)(file->content))[size_line] != '\0')
+	i = 0;
+	while ((ret->ovr)[i] != '\n' && (ret->ovr)[i] != '\0')
+		i++;
+	if ((ret->ovr)[i] == '\n')
 	{
-		tmp = ft_strdup(file->content + (size_line + 1));
-		free(file->content);
-		file->content = tmp;
+		ret->str = ft_strsub(ret->ovr, 0, i);
+		tmp = ft_strdup(ret->ovr + i + 1);
+		ret->nl--;
+		ft_memdel((void *)&ret->ovr);
+		ret->ovr = tmp;
+		if ((ret->ovr)[0] == '\0')
+			ft_strdel((void *)&ret->ovr);
 	}
-	else
-		ft_strclr(file->content);
-}
-
-static	int		gnl_read(char **line, t_list *file, char *buf)
-{
-	int		num_bytes;
-	char	*tmp;
-
-	while ((num_bytes = read(file->content_size, buf, BUFF_SIZE)) > 0)
+	else if ((ret->ovr)[i] == '\0' && ret->n == 0)
 	{
-		buf[num_bytes] = '\0';
-		if (!(tmp = ft_strjoin(file->content, buf)))
-			return (-1);
-		free(file->content);
-		file->content = ft_strdup(tmp);
-		free(tmp);
-		if (ft_strchr(buf, '\n'))
-			break ;
-		ft_strclr(buf);
+		ret->str = ft_strdup(ret->ovr);
+		ft_memdel((void *)&ret->ovr);
 	}
-	if (num_bytes < BUFF_SIZE && !ft_strlen(file->content))
-		return (0);
-	gnl_cat(line, file);
-	ft_strclr(buf);
 	return (1);
 }
 
-int				get_next_line(const int fd, char **line)
+void	ft_combinelines(t_line *ret)
 {
-	char			buf[BUFF_SIZE + 1];
-	static	t_list	*file_list;
-	t_list			*file;
+	char	*tmp;
+
+	if ((ret->ovr) == NULL)
+		ret->ovr = ft_strnew(1);
+	tmp = ft_strjoin(ret->ovr, ret->buf);
+	ft_memdel((void *)&ret->ovr);
+	ret->ovr = tmp;
+	ft_strclr(ret->buf);
+}
+
+int		get_line(t_line *ret)
+{
+	ret->nl = 0;
+	ret->n = 1;
+	if (!(ret->buf = ft_strnew(BUFF_SIZE)))
+		return (-1);
+	if (ret->ovr != NULL)
+		if (ft_strchr(ret->ovr, '\n'))
+			ret->nl = 1;
+	while (ret->n > 0 && ret->nl < 1)
+	{
+		ret->n = read(ret->fd, ret->buf, BUFF_SIZE);
+		ret->buf[ret->n] = '\0';
+		if (ft_strchr(ret->buf, '\n'))
+			ret->nl = 1;
+		ft_combinelines(ret);
+	}
+	ft_memdel((void *)&ret->buf);
+	if (ret->n < 0)
+		return (-1);
+	else if (ret->n == 0 && (ret->ovr == NULL || ret->ovr[0] == '\0'))
+		return (0);
+	return (get_str(ret));
+}
+
+int		get_next_line(const int fd, char **line)
+{
+	static t_line	*link;
+	t_line			*ret;
 	int				i;
 
-	if ((fd < 0 || !line || read(fd, 0, 0) < 0))
+	if (fd < 0 || line == NULL)
 		return (-1);
-	file = new_file(&file_list, fd);
-	buf[BUFF_SIZE] = '\0';
-	if ((i = gnl_read(line, file, buf)) == 0)
+	if (!link)
 	{
-		ft_strclr(file->content);
-		return (0);
+		link = (t_line *)ft_memalloc(sizeof(t_line) * 1);
+		if (link == NULL)
+			return (-1);
 	}
+	if ((ret = ft_getfd(fd, link)) == NULL)
+		return (-1);
+	i = get_line(ret);
+	if ((i == 0 || i == -1) && ret->str == NULL)
+		return (i);
+	if ((*line = ft_strdup(ret->str)) == NULL)
+		return (-1);
+	ft_memdel((void **)(&ret->str));
+	ret->str = NULL;
 	return (i);
 }

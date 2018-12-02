@@ -81,6 +81,6 @@ int		make_cone(int fd, t_vector *set)
 		else
 			return (0);
 	}
-	ft_strdel(&line);
+	// ft_strdel(&line);
 	return (0);
 }

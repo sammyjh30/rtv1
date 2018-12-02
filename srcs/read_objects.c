@@ -31,6 +31,9 @@ int		check_objects(int fd, t_vector *set, char *line)
 	return (i);
 }
 
+/*
+** Check if the line contains a valid object
+*/
 int		is_obj(char *line)
 {
 	if (ft_strequ(line, "Sphere{") || ft_strequ(line, "Plane{"))
@@ -40,6 +43,9 @@ int		is_obj(char *line)
 	return (0);
 }
 
+/*
+** Iterate through the objects class
+*/
 int		read_objects(int fd, t_vector *set)
 {
 	int		i;
@@ -53,13 +59,19 @@ int		read_objects(int fd, t_vector *set)
 			break ;
 		if (is_obj(line))
 		{
-			if (!(check_objects(fd, set, line)))
+			if (!(check_objects(fd, set, line))) {
+				ft_strdel(&line);
 				return (0);
+			}
 		}
-		else if (ft_strequ(line, "\0"))
+		else if (ft_strequ(line, "\0")) {
+			ft_strdel(&line);
 			continue ;
-		else if (ft_strequ(line, "#"))
+		}
+		else if (ft_strequ(line, "#")) {
+			ft_strdel(&line);
 			return (1);
+		}
 		else
 		{
 			ft_strdel(&line);
