@@ -13,6 +13,17 @@
 #include "lib_ft.h"
 #include <stdio.h>
 
+int		ft_pow(int a, int b)
+{
+	int		ret;
+
+	ret = a;
+	while (--b > 0)
+		ret *= a;
+
+	return (ret);
+}
+
 double	ft_atod(char *str)
 {
 	char	**splt;
@@ -33,16 +44,16 @@ double	ft_atod(char *str)
 		end = 0;
 		if (splt[1])
 		{
-			len = ft_strlen(splt[1]) - 3;
-			while (len >= 0)
-				end = end / 10 + (splt[1][len--] - 48);
-			end /= 10;
+			len = 0;
+			while (ft_isdigit(splt[1][len]))
+				len++;
+			end = ft_atod(splt[1]) / ft_pow(10, len);
+			free(splt[1]);
 		}
 		if (start >= 0)
 			start = (start + end) * neg;
 		else
 			start -= end;
-		free(splt[1]);
 		free(splt);
 	}
 	return (start);

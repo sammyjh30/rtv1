@@ -6,7 +6,7 @@
 /*   By: shillebr <shillebr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 10:15:14 by shillebr          #+#    #+#             */
-/*   Updated: 2018/09/27 20:24:17 by shillebr         ###   ########.fr       */
+/*   Updated: 2018/12/03 13:52:43 by shillebr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 /*
 ** Checks which class is being read
 */
+
 int		read_class(int fd, t_param *p, char *line)
 {
 	if (ft_strequ(line, "##Objects"))
@@ -24,12 +25,12 @@ int		read_class(int fd, t_param *p, char *line)
 	}
 	else if (ft_strequ(line, "##Camera"))
 	{
-		if (!(read_camera(fd,  p->cam)))
+		if (!(read_camera(fd, p->cam)))
 			return (0);
 	}
 	else if (ft_strequ(line, "##Lights"))
 	{
-		if (!(read_lights(fd,  p->lis)))
+		if (!(read_lights(fd, p->lis)))
 			return (0);
 	}
 	return (1);
@@ -54,7 +55,6 @@ int		file_line(int l, int fd, t_param *p, char *line)
 		r = 1;
 	else
 		r = 0;
-	ft_strdel(&line);
 	return (r);
 }
 
@@ -78,6 +78,7 @@ int		read_file(char *av, t_param *p)
 		if ((i = get_next_line(fd, &line)) == 0)
 			break ;
 		r = file_line(l, fd, p, line);
+		ft_strdel(line);
 		l++;
 	}
 	return (r);
@@ -86,6 +87,7 @@ int		read_file(char *av, t_param *p)
 /*
 ** Checks if arguement is valid filetype
 */
+
 int		ft_rt(char *str)
 {
 	char *f_ext;

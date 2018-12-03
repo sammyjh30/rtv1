@@ -14,12 +14,20 @@
 
 void	assign_vec3(t_vec3 *v, char *line, int i, int count)
 {
+	char **splt;
+	int	j;
+
+	j=0;
+	splt = ft_strsplit(line + i, ',');
 	if (count == 0)
-		v->x = ft_atod(line + i);
+		v->x = ft_atod(splt[0]);
 	else if (count == 1)
-		v->y = ft_atod(line + i);
+		v->y = ft_atod(splt[0]);
 	else if (count == 2)
-		v->z = ft_atod(line + i);
+		v->z = ft_atod(splt[0]);
+	while (splt[j])
+		free(splt[j++]);
+	free(splt);
 }
 
 int		get_tvec3(t_vec3 *v, char *line, int i)

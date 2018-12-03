@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: shillebr <shillebr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/27 13:59:18 by shillebr          #+#    #+#             */
-/*   Updated: 2018/09/27 19:32:14 by shillebr         ###   ########.fr       */
+/*   Created: 2018/12/03 13:48:49 by shillebr          #+#    #+#             */
+/*   Updated: 2018/12/03 13:48:53 by shillebr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,31 +32,37 @@ int		is_light(char *line)
 	return (0);
 }
 
+int		read_extra(char *line)
+{
+	if (ft_strequ(line, ""))
+		return (4);
+	else if (ft_strequ(line, "#"))
+		return (1);
+	else
+		return (0);
+}
+
 int		read_lights(int fd, t_vector *set)
 {
 	int		i;
+	int		r;
 	char	*line;
 
 	i = 1;
-	ft_putendl("Reading Lights");
 	while (i != 0)
 	{
 		if ((i = get_next_line(fd, &line)) == 0)
-			break ;
+			return (1);
 		if (is_light(line))
 			check_lights(fd, set, line);
-		else if (ft_strequ(line, "")){
-			ft_strdel(&line);
-			continue ;
-		}
-		else if (ft_strequ(line, "#")) {
-			ft_strdel(&line);
-			return (1);
-		}
 		else
 		{
+			r = read_extra(line);
 			ft_strdel(&line);
-			return (0);
+			if (r == 4)
+				continue;
+			else
+				return (r);
 		}
 		ft_strdel(&line);
 	}

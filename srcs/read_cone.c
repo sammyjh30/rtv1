@@ -12,16 +12,6 @@
 
 #include "rtv1.h"
 
-// void	cone_axis(t_shape *cone, t_vec3 axis)
-// {
-// 	double	angle;
-
-// 	cone->norm = vec3_nor_cpy(axis);
-// 	angle = acos(vec3_dot((t_vec3){0, 1, 0}, axis) / vec3_len(axis));
-// 	cone->imat = matrix_axis_rot(vec3_crs(axis, (t_vec3){0, 1, 0}), -angle);
-// 	cone->mat = matrix_inverse(&cone->imat);
-// }
-
 int		get_cone_info(t_shape *cone, char *line)
 {
 	if (ft_strequ("\tradius[", line))
@@ -81,6 +71,5 @@ int		make_cone(int fd, t_vector *set)
 		else
 			return (0);
 	}
-	// ft_strdel(&line);
 	return (0);
 }

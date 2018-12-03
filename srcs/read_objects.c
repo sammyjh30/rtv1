@@ -79,5 +79,6 @@ int		read_objects(int fd, t_vector *set)
 		}
 		ft_strdel(&line);
 	}
+	ft_strdel(&line);
 	return (1);
 }

@@ -12,16 +12,6 @@
 
 #include "rtv1.h"
 
-// void	cyl_axis(t_shape *cyl, t_vec3 axis)
-// {
-// 	double	angle;
-
-// 	cyl->norm = vec3_nor_cpy(axis);
-// 	angle = acos(vec3_dot((t_vec3){0, 1, 0}, axis) / vec3_len(axis));
-// 	cyl->imat = matrix_axis_rot(vec3_crs(axis, (t_vec3){0, 1, 0}), -angle);
-// 	cyl->mat = matrix_inverse(&cyl->imat);
-// }
-
 int		get_cyl_info(t_shape *cyl, char *line)
 {
 	if (ft_strequ("\tradius[", line))
