@@ -1,0 +1,186 @@
+valgrind --leak-check=full -v ./rtv1 scenes/scene_1.rt 
+==7339== Memcheck, a memory error detector
+==7339== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
+==7339== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
+==7339== Command: ./rtv1 scenes/scene_1.rt
+==7339== 
+--7339-- Valgrind options:
+--7339--    --leak-check=full
+--7339--    -v
+--7339-- Contents of /proc/version:
+--7339--   Linux version 4.15.0-39-generic (buildd@lcy01-amd64-012) (gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.10)) #42~16.04.1-Ubuntu SMP Wed Oct 24 17:09:54 UTC 2018
+--7339-- 
+--7339-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-avx-avx2-bmi
+--7339-- Page sizes: currently 4096, max supported 4096
+--7339-- Valgrind library directory: /usr/lib/valgrind
+--7339-- Reading syms from /media/sammyjh30/HDD_Storage/Personal/Ubuntu/WTC/rtv1/master_dec/rtv1
+--7339-- Reading syms from /lib/x86_64-linux-gnu/ld-2.23.so
+--7339--   Considering /lib/x86_64-linux-gnu/ld-2.23.so ..
+--7339--   .. CRC mismatch (computed aa979a42 wanted 9019bbb7)
+--7339--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/ld-2.23.so ..
+--7339--   .. CRC is valid
+--7339-- Reading syms from /usr/lib/valgrind/memcheck-amd64-linux
+--7339--   Considering /usr/lib/valgrind/memcheck-amd64-linux ..
+--7339--   .. CRC mismatch (computed eea41ea9 wanted 2009db78)
+--7339--    object doesn't have a symbol table
+--7339--    object doesn't have a dynamic symbol table
+--7339-- Scheduler: using generic scheduler lock implementation.
+--7339-- Reading suppressions file: /usr/lib/valgrind/default.supp
+==7339== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-7339-by-sammyjh30-on-???
+==7339== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-7339-by-sammyjh30-on-???
+==7339== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-7339-by-sammyjh30-on-???
+==7339== 
+==7339== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==7339== don't want to do, unless you know exactly what you're doing,
+==7339== or are doing some strange experiment):
+==7339==   /usr/lib/valgrind/../../bin/vgdb --pid=7339 ...command...
+==7339== 
+==7339== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==7339==   /path/to/gdb ./rtv1
+==7339== and then give GDB the following command
+==7339==   target remote | /usr/lib/valgrind/../../bin/vgdb --pid=7339
+==7339== --pid is optional if only one valgrind process is running
+==7339== 
+--7339-- REDIR: 0x401cfd0 (ld-linux-x86-64.so.2:strlen) redirected to 0x3809e181 (???)
+--7339-- Reading syms from /usr/lib/valgrind/vgpreload_core-amd64-linux.so
+--7339--   Considering /usr/lib/valgrind/vgpreload_core-amd64-linux.so ..
+--7339--   .. CRC mismatch (computed 2567ccf6 wanted 49420590)
+--7339--    object doesn't have a symbol table
+--7339-- Reading syms from /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so
+--7339--   Considering /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so ..
+--7339--   .. CRC mismatch (computed 0e27c9a8 wanted ac585421)
+--7339--    object doesn't have a symbol table
+==7339== WARNING: new redirection conflicts with existing -- ignoring it
+--7339--     old: 0x0401cfd0 (strlen              ) R-> (0000.0) 0x3809e181 ???
+--7339--     new: 0x0401cfd0 (strlen              ) R-> (2007.0) 0x04c31020 strlen
+--7339-- REDIR: 0x401b920 (ld-linux-x86-64.so.2:index) redirected to 0x4c30bc0 (index)
+--7339-- REDIR: 0x401bb40 (ld-linux-x86-64.so.2:strcmp) redirected to 0x4c320d0 (strcmp)
+--7339-- REDIR: 0x401dd30 (ld-linux-x86-64.so.2:mempcpy) redirected to 0x4c35270 (mempcpy)
+--7339-- Reading syms from /lib/x86_64-linux-gnu/libm-2.23.so
+--7339--   Considering /lib/x86_64-linux-gnu/libm-2.23.so ..
+--7339--   .. CRC mismatch (computed e8c3647b wanted c3efddac)
+--7339--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/libm-2.23.so ..
+--7339--   .. CRC is valid
+--7339-- Reading syms from /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0
+--7339--   Considering /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0 ..
+--7339--   .. CRC mismatch (computed 2d6b0194 wanted c4b33c13)
+--7339--    object doesn't have a symbol table
+--7339-- Reading syms from /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0
+--7339--   Considering /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0 ..
+--7339--   .. CRC mismatch (computed b483887a wanted 38c83e44)
+--7339--    object doesn't have a symbol table
+--7339-- Reading syms from /lib/x86_64-linux-gnu/libc-2.23.so
+--7339--   Considering /lib/x86_64-linux-gnu/libc-2.23.so ..
+--7339--   .. CRC mismatch (computed 7a8ee3e4 wanted a5190ac4)
+--7339--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/libc-2.23.so ..
+--7339--   .. CRC is valid
+--7339-- Reading syms from /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0
+--7339--    object doesn't have a symbol table
+--7339-- Reading syms from /lib/x86_64-linux-gnu/libdl-2.23.so
+--7339--   Considering /lib/x86_64-linux-gnu/libdl-2.23.so ..
+--7339--   .. CRC mismatch (computed 39227170 wanted ab6e2c22)
+--7339--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/libdl-2.23.so ..
+--7339--   .. CRC is valid
+--7339-- Reading syms from /usr/lib/x86_64-linux-gnu/libXau.so.6.0.0
+--7339--   Considering /usr/lib/x86_64-linux-gnu/libXau.so.6.0.0 ..
+--7339--   .. CRC mismatch (computed 256f5df8 wanted 5d40ac88)
+--7339--    object doesn't have a symbol table
+--7339-- Reading syms from /usr/lib/x86_64-linux-gnu/libXdmcp.so.6.0.0
+--7339--    object doesn't have a symbol table
+--7339-- REDIR: 0x571ea00 (libc.so.6:strcasecmp) redirected to 0x4a286f0 (_vgnU_ifunc_wrapper)
+--7339-- REDIR: 0x571a280 (libc.so.6:strcspn) redirected to 0x4a286f0 (_vgnU_ifunc_wrapper)
+--7339-- REDIR: 0x5720cf0 (libc.so.6:strncasecmp) redirected to 0x4a286f0 (_vgnU_ifunc_wrapper)
+--7339-- REDIR: 0x571c6f0 (libc.so.6:strpbrk) redirected to 0x4a286f0 (_vgnU_ifunc_wrapper)
+--7339-- REDIR: 0x571ca80 (libc.so.6:strspn) redirected to 0x4a286f0 (_vgnU_ifunc_wrapper)
+--7339-- REDIR: 0x571e14b (libc.so.6:memcpy@GLIBC_2.2.5) redirected to 0x4a286f0 (_vgnU_ifunc_wrapper)
+--7339-- REDIR: 0x571c400 (libc.so.6:rindex) redirected to 0x4c308a0 (rindex)
+--7339-- REDIR: 0x5713130 (libc.so.6:malloc) redirected to 0x4c2db20 (malloc)
+--7339-- REDIR: 0x571a720 (libc.so.6:strlen) redirected to 0x4c30f60 (strlen)
+--7339-- REDIR: 0x571ab70 (libc.so.6:__GI_strncmp) redirected to 0x4c31710 (__GI_strncmp)
+--7339-- REDIR: 0x5713d10 (libc.so.6:calloc) redirected to 0x4c2faa0 (calloc)
+--7339-- REDIR: 0x5723470 (libc.so.6:__GI_memcpy) redirected to 0x4c32b00 (__GI_memcpy)
+--7339-- REDIR: 0x57233f0 (libc.so.6:memcpy@@GLIBC_2.14) redirected to 0x4a286f0 (_vgnU_ifunc_wrapper)
+--7339-- REDIR: 0x57dcea0 (libc.so.6:__memcpy_avx_unaligned) redirected to 0x4c324a0 (memcpy@@GLIBC_2.14)
+--7339-- REDIR: 0x57134f0 (libc.so.6:free) redirected to 0x4c2ed80 (free)
+--7339-- REDIR: 0x5725760 (libc.so.6:strchrnul) redirected to 0x4c34da0 (strchrnul)
+--7339-- REDIR: 0x57a5480 (libc.so.6:__strcpy_chk) redirected to 0x4c34e10 (__strcpy_chk)
+--7339-- REDIR: 0x571d060 (libc.so.6:__GI_strstr) redirected to 0x4c354d0 (__strstr_sse2)
+--7339-- REDIR: 0x571dbb0 (libc.so.6:bcmp) redirected to 0x4a286f0 (_vgnU_ifunc_wrapper)
+--7339-- REDIR: 0x57fd430 (libc.so.6:__memcmp_sse4_1) redirected to 0x4c33cd0 (__memcmp_sse4_1)
+--7339-- REDIR: 0x571ab20 (libc.so.6:strncmp) redirected to 0x4a286f0 (_vgnU_ifunc_wrapper)
+--7339-- REDIR: 0x57d4a90 (libc.so.6:__strncmp_sse42) redirected to 0x4c317f0 (__strncmp_sse42)
+--7339-- REDIR: 0x571e1b0 (libc.so.6:memset) redirected to 0x4a286f0 (_vgnU_ifunc_wrapper)
+--7339-- REDIR: 0x5801970 (libc.so.6:__memset_avx2) redirected to 0x4c344c0 (memset)
+--7339-- REDIR: 0x57dc9b0 (libc.so.6:__memmove_avx_unaligned) redirected to 0x4c32230 (memcpy@GLIBC_2.2.5)
+--7339-- REDIR: 0x57136c0 (libc.so.6:realloc) redirected to 0x4c2fce0 (realloc)
+--7339-- REDIR: 0x571c3c0 (libc.so.6:strncpy) redirected to 0x4a286f0 (_vgnU_ifunc_wrapper)
+--7339-- REDIR: 0x5735000 (libc.so.6:__strncpy_sse2_unaligned) redirected to 0x4c31570 (__strncpy_sse2_unaligned)
+==7339== Syscall param writev(vector[...]) points to uninitialised byte(s)
+==7339==    at 0x578BFE0: __writev_nocancel (syscall-template.S:84)
+==7339==    by 0x5A62F28: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==7339==    by 0x5A6331C: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==7339==    by 0x5A633A4: xcb_writev (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==7339==    by 0x518054D: _XSend (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==7339==    by 0x51806AF: _XReadEvents (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==7339==    by 0x517EBD0: XWindowEvent (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==7339==    by 0x40B9CD: mlx_int_wait_first_expose (in /media/sammyjh30/HDD_Storage/Personal/Ubuntu/WTC/rtv1/master_dec/rtv1)
+==7339==    by 0x40B823: mlx_new_window (in /media/sammyjh30/HDD_Storage/Personal/Ubuntu/WTC/rtv1/master_dec/rtv1)
+==7339==    by 0x401DA4: init_param (init_param.c:22)
+==7339==    by 0x40196B: main (main.c:59)
+==7339==  Address 0x6293fbc is 28 bytes inside a block of size 16,384 alloc'd
+==7339==    at 0x4C2FB55: calloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==7339==    by 0x5170722: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==7339==    by 0x40B470: mlx_init (in /media/sammyjh30/HDD_Storage/Personal/Ubuntu/WTC/rtv1/master_dec/rtv1)
+==7339==    by 0x401D66: init_param (init_param.c:20)
+==7339==    by 0x40196B: main (main.c:59)
+==7339== 
+Done with cam
+Reading Objects
+ep test 1
+ep test 2
+ep test 3
+ep test 4
+ep test 1
+ep test 2
+ep test 5
+==7339== 
+==7339== HEAP SUMMARY:
+==7339==     in use at exit: 120,777 bytes in 199 blocks
+==7339==   total heap usage: 9,774 allocs, 9,575 frees, 384,470 bytes allocated
+==7339== 
+==7339== Searching for pointers to 199 not-freed blocks
+==7339== Checked 213,976 bytes
+==7339== 
+==7339== LEAK SUMMARY:
+==7339==    definitely lost: 0 bytes in 0 blocks
+==7339==    indirectly lost: 0 bytes in 0 blocks
+==7339==      possibly lost: 0 bytes in 0 blocks
+==7339==    still reachable: 120,777 bytes in 199 blocks
+==7339==         suppressed: 0 bytes in 0 blocks
+==7339== Reachable blocks (those to which a pointer was found) are not shown.
+==7339== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==7339== 
+==7339== Use --track-origins=yes to see where uninitialised values come from
+==7339== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
+==7339== 
+==7339== 1 errors in context 1 of 1:
+==7339== Syscall param writev(vector[...]) points to uninitialised byte(s)
+==7339==    at 0x578BFE0: __writev_nocancel (syscall-template.S:84)
+==7339==    by 0x5A62F28: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==7339==    by 0x5A6331C: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==7339==    by 0x5A633A4: xcb_writev (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==7339==    by 0x518054D: _XSend (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==7339==    by 0x51806AF: _XReadEvents (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==7339==    by 0x517EBD0: XWindowEvent (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==7339==    by 0x40B9CD: mlx_int_wait_first_expose (in /media/sammyjh30/HDD_Storage/Personal/Ubuntu/WTC/rtv1/master_dec/rtv1)
+==7339==    by 0x40B823: mlx_new_window (in /media/sammyjh30/HDD_Storage/Personal/Ubuntu/WTC/rtv1/master_dec/rtv1)
+==7339==    by 0x401DA4: init_param (init_param.c:22)
+==7339==    by 0x40196B: main (main.c:59)
+==7339==  Address 0x6293fbc is 28 bytes inside a block of size 16,384 alloc'd
+==7339==    at 0x4C2FB55: calloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==7339==    by 0x5170722: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0)
+==7339==    by 0x40B470: mlx_init (in /media/sammyjh30/HDD_Storage/Personal/Ubuntu/WTC/rtv1/master_dec/rtv1)
+==7339==    by 0x401D66: init_param (init_param.c:20)
+==7339==    by 0x40196B: main (main.c:59)
+==7339== 
+==7339== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)

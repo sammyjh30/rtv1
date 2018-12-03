@@ -78,7 +78,7 @@ int		read_file(char *av, t_param *p)
 		if ((i = get_next_line(fd, &line)) == 0)
 			break ;
 		r = file_line(l, fd, p, line);
-		ft_strdel(line);
+		ft_strdel(&line);
 		l++;
 	}
 	return (r);
