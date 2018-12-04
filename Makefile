@@ -6,7 +6,7 @@
 #    By: shillebr <shillebr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/21 13:06:01 by xrhoda            #+#    #+#              #
-#    Updated: 2018/09/27 15:13:29 by shillebr         ###   ########.fr        #
+#    Updated: 2018/12/04 08:11:51 by shillebr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,8 @@ FILES = main.c \
 		get_tcol.c \
 		calc_light.c \
 		cast_ray.c \
-		get_radius.c
+		get_radius_1.c \
+		get_radius_2.c
 SRC_DIR = srcs
 SRCS = $(FILES:$(SRC_DIR)/%=%)
 

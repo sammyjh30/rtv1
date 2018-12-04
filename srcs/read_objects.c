@@ -6,7 +6,7 @@
 /*   By: shillebr <shillebr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 18:17:21 by shillebr          #+#    #+#             */
-/*   Updated: 2018/09/27 20:16:39 by shillebr         ###   ########.fr       */
+/*   Updated: 2018/12/04 08:55:17 by shillebr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int		check_objects(int fd, t_vector *set, char *line)
 /*
 ** Check if the line contains a valid object
 */
+
 int		is_obj(char *line)
 {
 	if (ft_strequ(line, "Sphere{") || ft_strequ(line, "Plane{"))
@@ -43,12 +44,30 @@ int		is_obj(char *line)
 	return (0);
 }
 
+int		read_obj_loop(int fd, char *line, t_vector *set)
+{
+	if (is_obj(line))
+	{
+		if (!(check_objects(fd, set, line)))
+			return (0);
+	}
+	else if (ft_strequ(line, "\0"))
+		return (4);
+	else if (ft_strequ(line, "#"))
+		return (1);
+	else
+		return (0);
+	return (3);
+}
+
 /*
 ** Iterate through the objects class
 */
+
 int		read_objects(int fd, t_vector *set)
 {
 	int		i;
+	int		r;
 	char	*line;
 
 	i = 1;
@@ -57,27 +76,12 @@ int		read_objects(int fd, t_vector *set)
 	{
 		if ((i = get_next_line(fd, &line)) == 0)
 			break ;
-		if (is_obj(line))
-		{
-			if (!(check_objects(fd, set, line))) {
-				ft_strdel(&line);
-				return (0);
-			}
-		}
-		else if (ft_strequ(line, "\0")) {
-			ft_strdel(&line);
-			continue ;
-		}
-		else if (ft_strequ(line, "#")) {
-			ft_strdel(&line);
-			return (1);
-		}
-		else
-		{
-			ft_strdel(&line);
-			return (0);
-		}
+		r = read_obj_loop(fd, line, set);
 		ft_strdel(&line);
+		if (r == 4)
+			continue;
+		if (r != 3)
+			return (r);
 	}
 	ft_strdel(&line);
 	return (1);

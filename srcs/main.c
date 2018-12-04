@@ -6,7 +6,7 @@
 /*   By: shillebr <shillebr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/21 09:19:59 by xrhoda            #+#    #+#             */
-/*   Updated: 2018/09/27 19:33:20 by shillebr         ###   ########.fr       */
+/*   Updated: 2018/12/04 08:14:56 by shillebr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int		ft_exit(t_param *p)
 /*
 ** Check for valid arguments
 */
+
 void	arg_check(char *str, t_param *p)
 {
 	if (!(ft_rt(str)))
@@ -38,6 +39,7 @@ void	arg_check(char *str, t_param *p)
 /*
 ** Start MLX process
 */
+
 void	start_mlx(t_param *p)
 {
 	if (OS)
