@@ -78,15 +78,15 @@ Cylinder{
 	radius[1];
 	axis[0,1,0];
 	colour[255,255,0];
-	texture[0.005];
+	texture[0.0005];
 }
 #
 
 ##Lights
 Dir Light{
 	dir[-1,-1,-1];
-	intensity[1];
-	colour[255,255,255];
+	intensity[0.5];
+	colour[255,0,255];
 }
 Dir Light{
 	dir[0,-5,5];
@@ -96,11 +96,11 @@ Dir Light{
 Dir Light{
 	dir[1,-1,1];
 	intensity[0.3];
-	colour[255,255,255];
+	colour[0,255,255];
 }
 Dir Light{
 	dir[-1,-1,1];
-	intensity[1];
-	colour[255,255,255];
+	intensity[0.5];
+	colour[255,255,0];
 }
 #
