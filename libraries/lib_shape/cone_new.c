@@ -6,11 +6,12 @@
 /*   By: shillebr <shillebr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/14 07:50:53 by xrhoda            #+#    #+#             */
-/*   Updated: 2018/09/27 16:05:39 by shillebr         ###   ########.fr       */
+/*   Updated: 2018/12/05 10:04:51 by shillebr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lib_shape.h"
+#include <stdio.h>
 
 t_shape		*cone_new(t_vec3 pos, t_vec3 axis, double rad, t_colour col)
 {
@@ -29,6 +30,27 @@ t_shape		*cone_new(t_vec3 pos, t_vec3 axis, double rad, t_colour col)
 	cone->tex = 0;
 	angle = acos(vec3_dot((t_vec3){0, 1, 0}, axis) / vec3_len(axis));
 	cone->imat = matrix_axis_rot(vec3_crs(axis, (t_vec3){0, 1, 0}), -angle);
+	
+	int	i;
+	int	j;
+	i = 0;
+	while (i++ < 4)
+	{
+		j = 0;
+		while (j++ < 4)
+			printf("[%f] ", cone->imat.mat[i][j]);
+		printf("\n");
+	}
+		
 	cone->mat = matrix_inverse(&cone->imat);
+
+	i = 0;
+	while (i++ < 4)
+	{
+		j = 0;
+		while (j++ < 4)
+			printf("[%f] ", cone->mat.mat[i][j]);
+		printf("\n");
+	}
 	return (cone);
 }

@@ -21,6 +21,13 @@ Sphere{
 	colour[100,0,0];
 	texture[0.001];
 }
+Cone{
+	pos[0,3,5];
+	radius[1];
+	axis[-360,0,0];
+	colour[255,255,0];
+	texture[0.0007];
+}
 #
 
 ##Lights
