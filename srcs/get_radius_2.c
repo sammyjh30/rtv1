@@ -6,7 +6,7 @@
 /*   By: shillebr <shillebr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/04 08:12:08 by shillebr          #+#    #+#             */
-/*   Updated: 2018/12/04 08:12:31 by shillebr         ###   ########.fr       */
+/*   Updated: 2019/01/03 08:35:33 by shillebr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int		get_norm(t_shape *shp, char *line, int i)
 	return (1);
 }
 
+#include "stdio.h"
+
 int		get_axis(t_shape *shp, char *line, int i)
 {
 	t_vec3		axis;
@@ -29,8 +31,12 @@ int		get_axis(t_shape *shp, char *line, int i)
 
 	if (!(get_tvec3(&axis, line, i)))
 		return (0);
+	printf("Axis 1: [%f, %f, %f]\n", axis.x, axis.y, axis.z);
+	// shp->axis = axis;
 	shp->norm = vec3_nor_cpy(axis);
+	printf("Axis 2: [%f, %f, %f]\n", shp->norm.x, shp->norm.y, shp->norm.z);
 	angle = acos(vec3_dot((t_vec3){0, 1, 0}, axis) / vec3_len(axis));
+	printf("Angle = %f\n", angle);
 	shp->imat = matrix_axis_rot(vec3_crs(axis, (t_vec3){0, 1, 0}), -angle);
 	shp->mat = matrix_inverse(&shp->imat);
 	return (1);

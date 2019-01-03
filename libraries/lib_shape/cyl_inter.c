@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cyl_inter.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xrhoda <xrhoda@student.42.fr>              +#+  +:+       +#+        */
+/*   By: shillebr <shillebr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/07 10:51:36 by xrhoda            #+#    #+#             */
-/*   Updated: 2018/09/25 18:13:42 by xrhoda           ###   ########.fr       */
+/*   Updated: 2019/01/03 10:04:59 by shillebr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lib_shape.h"
-#include <stdio.h>
 
 static	double	cyl_discriminant(t_vec3 *ce, t_ray r, double rad)
 {
