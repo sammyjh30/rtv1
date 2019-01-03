@@ -78,7 +78,13 @@ int		read_cam_loop(int fd, char *line, t_cam *c)
 		if (ft_strequ(line, ""))
 			return (4);
 		else if (ft_strequ(line, "#"))
+		{
+			c->forward = vec3_nor_cpy(vec3_sub_new(c->tar, c->org));
+			printf("Cam org: [%f %f %f]\n", c->org.x, c->org.y, c->org.z);
+			printf("Cam target: [%f %f %f]\n", c->tar.x, c->tar.y, c->tar.z);
+			printf("Cam forward: [%f %f %f]\n", c->forward.x, c->forward.y, c->forward.z);
 			return (1);
+		}
 		else
 			return (0);
 	}

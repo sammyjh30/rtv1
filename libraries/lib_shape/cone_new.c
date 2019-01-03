@@ -30,27 +30,5 @@ t_shape		*cone_new(t_vec3 pos, t_vec3 axis, double rad, t_colour col)
 	cone->tex = 0;
 	angle = acos(vec3_dot((t_vec3){0, 1, 0}, axis) / vec3_len(axis));
 	cone->imat = matrix_axis_rot(vec3_crs(axis, (t_vec3){0, 1, 0}), -angle);
-	
-	int	i;
-	int	j;
-	i = 0;
-	while (i++ < 4)
-	{
-		j = 0;
-		while (j++ < 4)
-			printf("[%f] ", cone->imat.mat[i][j]);
-		printf("\n");
-	}
-		
-	cone->mat = matrix_inverse(&cone->imat);
-
-	i = 0;
-	while (i++ < 4)
-	{
-		j = 0;
-		while (j++ < 4)
-			printf("[%f] ", cone->mat.mat[i][j]);
-		printf("\n");
-	}
 	return (cone);
 }
