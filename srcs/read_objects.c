@@ -71,7 +71,6 @@ int		read_objects(int fd, t_vector *set)
 	char	*line;
 
 	i = 1;
-	ft_putendl("Reading Objects");
 	while (i != 0)
 	{
 		if ((i = get_next_line(fd, &line)) == 0)

@@ -31,7 +31,10 @@ int		read_class(int fd, t_param *p, char *line)
 	else if (ft_strequ(line, "##Lights"))
 	{
 		if (!(read_lights(fd, p->lis)))
+		{
+			ft_putendl("Lights read FAILED");
 			return (0);
+		}
 	}
 	return (1);
 }
@@ -67,17 +70,15 @@ int		read_file(char *av, t_param *p)
 	int		fd;
 
 	r = 0;
-	if ((fd = open(av, O_RDONLY)) == -1)
+	if (((fd = open(av, O_RDONLY)) == -1) || !p)
 		return (0);
 	i = 1;
 	l = 0;
-	if (!p)
-		return (0);
 	while (i != 0)
 	{
-		if ((i = get_next_line(fd, &line)) == 0)
+		if (((i = get_next_line(fd, &line)) == 0) ||
+			(!(r = file_line(l, fd, p, line))))
 			break ;
-		r = file_line(l, fd, p, line);
 		ft_strdel(&line);
 		l++;
 	}

@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "rtv1.h"
-#include <stdio.h>
 
 t_cam	*new_cam(t_vec3 org, t_vec3 target, double fov)
 {
@@ -28,6 +27,5 @@ t_cam	*new_cam(t_vec3 org, t_vec3 target, double fov)
 	cam->up = vec3_crs(cam->forward, cam->right);
 	cam->h = tan(fov);
 	cam->w = cam->h * RATIO;
-	ft_putendl("Done with cam");
 	return (cam);
 }
