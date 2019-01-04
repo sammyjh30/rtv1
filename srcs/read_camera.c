@@ -6,7 +6,7 @@
 /*   By: shillebr <shillebr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/27 14:13:22 by shillebr          #+#    #+#             */
-/*   Updated: 2018/12/04 08:58:07 by shillebr         ###   ########.fr       */
+/*   Updated: 2019/01/04 10:38:34 by shillebr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,12 @@ int		read_cam_loop(int fd, char *line, t_cam *c)
 		else if (ft_strequ(line, "#"))
 		{
 			c->forward = vec3_nor_cpy(vec3_sub_new(c->tar, c->org));
+			if (!c->forward.z)
+				c->right = vec3_crs(c->forward, (t_vec3){0, 0, 1});
+			else		
+				c->right = vec3_crs(c->forward, (t_vec3){0, 1, 0});
+			vec3_nor(&(c->right));
+			c->up = vec3_crs(c->forward, c->right);
 			printf("Cam org: [%f %f %f]\n", c->org.x, c->org.y, c->org.z);
 			printf("Cam target: [%f %f %f]\n", c->tar.x, c->tar.y, c->tar.z);
 			printf("Cam forward: [%f %f %f]\n", c->forward.x, c->forward.y, c->forward.z);
