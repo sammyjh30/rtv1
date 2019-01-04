@@ -6,7 +6,7 @@
 /*   By: shillebr <shillebr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 10:15:14 by shillebr          #+#    #+#             */
-/*   Updated: 2018/12/03 13:52:43 by shillebr         ###   ########.fr       */
+/*   Updated: 2019/01/04 12:17:51 by shillebr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,7 @@ int		read_class(int fd, t_param *p, char *line)
 	else if (ft_strequ(line, "##Lights"))
 	{
 		if (!(read_lights(fd, p->lis)))
-		{
-			ft_putendl("Lights read FAILED");
 			return (0);
-		}
 	}
 	return (1);
 }
