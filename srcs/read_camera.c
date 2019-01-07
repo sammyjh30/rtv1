@@ -6,7 +6,7 @@
 /*   By: shillebr <shillebr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/27 14:13:22 by shillebr          #+#    #+#             */
-/*   Updated: 2019/01/04 14:11:46 by shillebr         ###   ########.fr       */
+/*   Updated: 2019/01/07 07:38:22 by shillebr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int		get_cam(int fd, t_cam *c)
 
 void	update_cam(t_cam *c)
 {
-	c->forward = vec3_nor_cpy(vec3_sub_new(c->tar, c->org));	
+	c->forward = vec3_nor_cpy(vec3_sub_new(c->tar, c->org));
 	if (c->forward.y == -1)
 		c->right = vec3_crs(c->forward, (t_vec3){0, 0, 1});
 	else

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_axis_rot.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xrhoda <xrhoda@student.42.fr>              +#+  +:+       +#+        */
+/*   By: shillebr <shillebr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 09:52:57 by xrhoda            #+#    #+#             */
-/*   Updated: 2018/09/25 18:46:54 by xrhoda           ###   ########.fr       */
+/*   Updated: 2019/01/07 07:48:04 by shillebr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,39 @@ void	calculate2(t_mat *ret, t_mat *mat, t_mat *rot)
 	ret->mat[3][3] = mat->mat[3][3];
 }
 
+void	calc_row_1_2(t_mat *ret, t_mat *mat, t_mat *rot)
+{
+	ret->mat[0][0] = mat->mat[0][0] * rot->mat[0][0] + mat->mat[1][0] *
+						rot->mat[0][1] + mat->mat[2][0] * rot->mat[0][2];
+	ret->mat[0][1] = mat->mat[0][1] * rot->mat[0][0] + mat->mat[1][1] *
+						rot->mat[0][1] + mat->mat[2][1] * rot->mat[0][2];
+	ret->mat[0][2] = mat->mat[0][2] * rot->mat[0][0] + mat->mat[1][2] *
+						rot->mat[0][1] + mat->mat[2][2] * rot->mat[0][2];
+	ret->mat[0][3] = mat->mat[0][3] * rot->mat[0][0] + mat->mat[1][3] *
+						rot->mat[0][1] + mat->mat[2][3] * rot->mat[0][2];
+	ret->mat[1][0] = mat->mat[0][0] * rot->mat[1][0] + mat->mat[1][0] *
+						rot->mat[1][1] + mat->mat[2][0] * rot->mat[1][2];
+	ret->mat[1][1] = mat->mat[0][1] * rot->mat[1][0] + mat->mat[1][1] *
+						rot->mat[1][1] + mat->mat[2][1] * rot->mat[1][2];
+	ret->mat[1][2] = mat->mat[0][2] * rot->mat[1][0] + mat->mat[1][2] *
+						rot->mat[1][1] + mat->mat[2][2] * rot->mat[1][2];
+	ret->mat[1][3] = mat->mat[0][3] * rot->mat[1][0] + mat->mat[1][3] *
+						rot->mat[1][1] + mat->mat[2][3] * rot->mat[1][2];
+}
+
 t_mat	calculate1(t_mat *mat, t_mat *rot)
 {
 	t_mat ret;
 
-	ret.mat[0][0] = mat->mat[0][0] * rot->mat[0][0] + mat->mat[1][0] * rot->mat[0][1] + mat->mat[2][0] * rot->mat[0][2];
-	ret.mat[0][1] = mat->mat[0][1] * rot->mat[0][0] + mat->mat[1][1] * rot->mat[0][1] + mat->mat[2][1] * rot->mat[0][2];
-	ret.mat[0][2] = mat->mat[0][2] * rot->mat[0][0] + mat->mat[1][2] * rot->mat[0][1] + mat->mat[2][2] * rot->mat[0][2];
-	ret.mat[0][3] = mat->mat[0][3] * rot->mat[0][0] + mat->mat[1][3] * rot->mat[0][1] + mat->mat[2][3] * rot->mat[0][2];
-	ret.mat[1][0] = mat->mat[0][0] * rot->mat[1][0] + mat->mat[1][0] * rot->mat[1][1] + mat->mat[2][0] * rot->mat[1][2];
-	ret.mat[1][1] = mat->mat[0][1] * rot->mat[1][0] + mat->mat[1][1] * rot->mat[1][1] + mat->mat[2][1] * rot->mat[1][2];
-	ret.mat[1][2] = mat->mat[0][2] * rot->mat[1][0] + mat->mat[1][2] * rot->mat[1][1] + mat->mat[2][2] * rot->mat[1][2];
-	ret.mat[1][3] = mat->mat[0][3] * rot->mat[1][0] + mat->mat[1][3] * rot->mat[1][1] + mat->mat[2][3] * rot->mat[1][2];
-	ret.mat[2][0] = mat->mat[0][0] * rot->mat[2][0] + mat->mat[1][0] * rot->mat[2][1] + mat->mat[2][0] * rot->mat[2][2];
-	ret.mat[2][1] = mat->mat[0][1] * rot->mat[2][0] + mat->mat[1][1] * rot->mat[2][1] + mat->mat[2][1] * rot->mat[2][2];
-	ret.mat[2][2] = mat->mat[0][2] * rot->mat[2][0] + mat->mat[1][2] * rot->mat[2][1] + mat->mat[2][2] * rot->mat[2][2];
-	ret.mat[2][3] = mat->mat[0][3] * rot->mat[2][0] + mat->mat[1][3] * rot->mat[2][1] + mat->mat[2][3] * rot->mat[2][2];
+	calc_row_1_2(&ret, mat, rot);
+	ret.mat[2][0] = mat->mat[0][0] * rot->mat[2][0] + mat->mat[1][0] *
+						rot->mat[2][1] + mat->mat[2][0] * rot->mat[2][2];
+	ret.mat[2][1] = mat->mat[0][1] * rot->mat[2][0] + mat->mat[1][1] *
+						rot->mat[2][1] + mat->mat[2][1] * rot->mat[2][2];
+	ret.mat[2][2] = mat->mat[0][2] * rot->mat[2][0] + mat->mat[1][2] *
+						rot->mat[2][1] + mat->mat[2][2] * rot->mat[2][2];
+	ret.mat[2][3] = mat->mat[0][3] * rot->mat[2][0] + mat->mat[1][3] *
+						rot->mat[2][1] + mat->mat[2][3] * rot->mat[2][2];
 	ret.mat[3][0] = mat->mat[3][0];
 	ret.mat[3][1] = mat->mat[3][1];
 	ret.mat[3][2] = mat->mat[3][2];
