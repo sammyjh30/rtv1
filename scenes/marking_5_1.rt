@@ -1,0 +1,26 @@
+##Scene
+
+##Camera
+Camera{
+	org[0,0,5];
+	target[0,0,0];
+	upguide[0,-1,0];
+}
+#
+
+##Objects
+Sphere{
+	radius[0.8];
+	pos[0,0,0];
+	colour[255,0,0];
+	texture[0.005];
+}
+#
+
+##Lights
+Dir Light{
+	dir[-1,0,0];
+	intensity[0.2];
+	colour[255,0,255];
+}
+#
