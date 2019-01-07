@@ -6,7 +6,7 @@
 /*   By: shillebr <shillebr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 10:14:42 by xrhoda            #+#    #+#             */
-/*   Updated: 2019/01/04 10:26:33 by shillebr         ###   ########.fr       */
+/*   Updated: 2019/01/07 07:38:38 by shillebr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_cam	*new_cam(t_vec3 org, t_vec3 target, double fov)
 	vec3_nor(&(cam->forward));
 	if (!cam->forward.z)
 		cam->right = vec3_crs(cam->forward, (t_vec3){0, 0, 1});
-	else		
+	else
 		cam->right = vec3_crs(cam->forward, (t_vec3){0, 1, 0});
 	vec3_nor(&(cam->right));
 	cam->up = vec3_crs(cam->forward, cam->right);
