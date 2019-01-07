@@ -6,7 +6,7 @@
 /*   By: shillebr <shillebr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 10:15:14 by shillebr          #+#    #+#             */
-/*   Updated: 2019/01/04 12:17:51 by shillebr         ###   ########.fr       */
+/*   Updated: 2019/01/07 07:27:13 by shillebr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ int		read_file(char *av, t_param *p)
 		ft_strdel(&line);
 		l++;
 	}
+	if (line)
+		ft_strdel(&line);
 	return (r);
 }
 
